@@ -3,10 +3,14 @@
 pipeline {
   agent any
   environment {
-      RCTL_API_KEY=credentials('rafay_api_key')
-      RCTL_API_SECRET=credentials('rafay_secret_key')
-      RCTL_REST_ENDPOINT="console.rafay.dev"
-      RCTL_PROJECT="defaultproject"
+#      RCTL_API_KEY=credentials('rafay_api_key')
+#      RCTL_API_SECRET=credentials('rafay_secret_key')
+#      RCTL_REST_ENDPOINT="console.rafay.dev"
+#      RCTL_PROJECT="defaultproject"
+      CLUSTER="TESTCLUSTERJENKINS"
+      BLUEPRINT="default"
+      PROJECT="jhansi"
+      REGION="us-west-2"
   }
   stages {
     stage("Checkout Repo") {
@@ -23,7 +27,7 @@ pipeline {
             wget -q https://s3-us-west-2.amazonaws.com/rafay-prod-cli/publish/rctl-linux-amd64.tar.bz2
             tar -xf rctl-linux-amd64.tar.bz2
             chmod 0755 rctl
-            ./rctl create cluster -f imported/examples/imported_cluster.yaml > cluster_bootstrap.yaml
+            ./rctl create cluster imported ${CLUSTER} -l aws/${REGION} -b ${BLUEPRINT} -p ${PROJECT} --config=/tmp/rctlconf > cluster_bootstrap.yaml
             grep -i "cluster.rafay.dev" cluster_bootstrap.yaml > /dev/null 2>&1
             if [ $? -eq 0 ];
             then
