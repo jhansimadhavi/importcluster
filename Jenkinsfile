@@ -3,7 +3,7 @@
 pipeline {
   agent any
   environment {
-      CLUSTER_NAME="testclusterjenkinsnew"
+      CLUSTER_NAME="testclusterjenkinsnew1"
       BLUEPRINT="default"
       PROJECT="jhansi"
       KUBECONFIG="/tmp/jekscluster_kubeconfig"
