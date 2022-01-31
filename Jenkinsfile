@@ -23,7 +23,7 @@ pipeline {
             wget -q https://s3-us-west-2.amazonaws.com/rafay-prod-cli/publish/rctl-linux-amd64.tar.bz2
             tar -xf rctl-linux-amd64.tar.bz2
             chmod 0755 rctl
-            ./rctl create cluster imported ${{  --config=/tmp/rctlconf> cluster_bootstrap.yaml
+            ./rctl create cluster imported ${CLUSTER} -l aws/${REGION} -b ${BLUEPRINT} -p ${PROJECT} --config=/tmp/rctlconf> cluster_bootstrap.yaml
             grep -i "cluster.rafay.dev" cluster_bootstrap.yaml > /dev/null 2>&1
             if [ $? -eq 0 ];
             then
@@ -42,4 +42,5 @@ pipeline {
             fi
         }
     }
+  }
   }
