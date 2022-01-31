@@ -7,6 +7,7 @@ pipeline {
       BLUEPRINT="default"
       PROJECT="jhansi"
       KUBECONFIG="/tmp/jekscluster_kubeconfig"
+      REGION="us-west-2"
   }
   stages {
     stage("Checkout Repo") {
