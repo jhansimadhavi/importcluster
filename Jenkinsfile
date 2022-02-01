@@ -3,10 +3,10 @@
 pipeline {
   agent any
   environment {
-      CLUSTER_NAME="jtest2"
+      CLUSTER_NAME="jsample2"
       BLUEPRINT="default"
       PROJECT="jhansi"
-      KUBECONFIG="/tmp/jest2_kubeconfig"
+      KUBECONFIG="/tmp/jsample2_kubeconfig"
       REGION="us-west-2"
   }
   stages {
